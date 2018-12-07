@@ -1,8 +1,8 @@
 /*global cordova*/
 module.exports = {
 
-    connect: function (macAddress, success, failure) {
-        cordova.exec(success, failure, "BluetoothSerial", "connect", [macAddress]);
+    connect: function (btName, macAddress, success, failure) {
+        cordova.exec(success, failure, btName, "connect", [macAddress]);
     },
 
     // Android only - see http://goo.gl/1mFjZY
@@ -15,16 +15,16 @@ module.exports = {
     },
 
     // list bound devices
-    list: function (success, failure) {
-        cordova.exec(success, failure, "BluetoothSerial", "list", []);
+    list: function (btName, success, failure) {
+        cordova.exec(success, failure, btName, "list", []);
     },
 
-    isEnabled: function (success, failure) {
-        cordova.exec(success, failure, "BluetoothSerial", "isEnabled", []);
+    isEnabled: function (btName, success, failure) {
+        cordova.exec(success, failure, btName, "isEnabled", []);
     },
 
-    isConnected: function (success, failure) {
-        cordova.exec(success, failure, "BluetoothSerial", "isConnected", []);
+    isConnected: function (btName, success, failure) {
+        cordova.exec(success, failure, btName, "isConnected", []);
     },
 
     // the number of bytes of data available to read is passed to the success function
@@ -44,7 +44,7 @@ module.exports = {
 
     // writes data to the bluetooth serial port
     // data can be an ArrayBuffer, string, integer array, or Uint8Array
-    write: function (data, success, failure) {
+    write: function (btName, data, success, failure) {
 
         // convert to ArrayBuffer
         if (typeof data === 'string') {
@@ -56,7 +56,7 @@ module.exports = {
             data = data.buffer;
         }
 
-        cordova.exec(success, failure, "BluetoothSerial", "write", [data]);
+        cordova.exec(success, failure, btName, "write", [data]);
     },
 
     // calls the success callback when new data is available
